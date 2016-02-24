@@ -3,6 +3,9 @@ using System.Collections;
 
 public class CachingLoadExample : MonoBehaviour
 {
+	[SerializeField]
+	bool enableCache = true;
+
 	string bundleURL = "http://localhost:9000/assets/StreamingAssets/sprites";
 	string assetName = "Test";
 	int version = 0;
@@ -14,6 +17,17 @@ public class CachingLoadExample : MonoBehaviour
 
 	IEnumerator DownloadAndCache()
 	{
+		if (!enableCache) {
+			Debug.Log("Clear Cache");
+			Caching.CleanCache();
+		}
+
+		if (Caching.IsVersionCached(bundleURL, version)) {
+			Debug.Log("Exist Cache");
+		} else {
+			Debug.Log("Not Exist Cache");
+		}
+
 		while(!Caching.ready)
 			yield return null;
 
