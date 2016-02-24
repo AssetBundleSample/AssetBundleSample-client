@@ -3,9 +3,9 @@ using System.Collections;
 
 public class CachingLoadExample : MonoBehaviour
 {
-	public string bundleURL;
-	public string assetName;
-	public int version;
+	string bundleURL = "http://localhost:9000/assets/StreamingAssets/sprites";
+	string assetName = "Test";
+	int version = 0;
 
 	void Start()
 	{
